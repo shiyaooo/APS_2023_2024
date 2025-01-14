@@ -1,0 +1,2 @@
+[   CONST x int 6;
+    ECHO (add (mul 42 x) (sub (div 1 2) 42)) ]

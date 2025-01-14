@@ -1,0 +1,5 @@
+[
+  CONST y bool false;
+  FUN f int [x1:bool, x2:int, x3:int] (if y x2 5);
+  ECHO (add 4 5)
+]

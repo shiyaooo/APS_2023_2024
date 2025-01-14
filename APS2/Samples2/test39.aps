@@ -1,0 +1,7 @@
+[
+  CONST xs (vec bool) (alloc 3);
+  SET (nth xs 0) true;
+  SET (nth xs 1) true;
+  SET (nth xs 2) false;
+  ECHO (nth xs 0)
+]

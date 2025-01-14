@@ -1,0 +1,798 @@
+State 0:
+## Known stack suffix:
+##
+## LR(1) items:
+prog' -> . prog [ # ]
+## Transitions:
+-- On LBRA shift to state 1
+-- On prog shift to state 70
+## Reductions:
+
+State 1:
+## Known stack suffix:
+## LBRA
+## LR(1) items:
+prog -> LBRA . cmds RBRA [ # ]
+## Transitions:
+-- On FUN shift to state 2
+-- On ECHO shift to state 58
+-- On CONST shift to state 60
+-- On stat shift to state 64
+-- On def shift to state 65
+-- On cmds shift to state 68
+## Reductions:
+
+State 2:
+## Known stack suffix:
+## FUN
+## LR(1) items:
+def -> FUN . IDENT typ LBRA args RBRA expr [ PV ]
+def -> FUN . REC IDENT typ LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On REC shift to state 3
+-- On IDENT shift to state 52
+## Reductions:
+
+State 3:
+## Known stack suffix:
+## FUN REC
+## LR(1) items:
+def -> FUN REC . IDENT typ LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On IDENT shift to state 4
+## Reductions:
+
+State 4:
+## Known stack suffix:
+## FUN REC IDENT
+## LR(1) items:
+def -> FUN REC IDENT . typ LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On typ shift to state 15
+## Reductions:
+
+State 5:
+## Known stack suffix:
+## LPAR
+## LR(1) items:
+typ -> LPAR . types IMP typ RPAR [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On types shift to state 8
+-- On typ shift to state 12
+## Reductions:
+
+State 6:
+## Known stack suffix:
+## INT
+## LR(1) items:
+typ -> INT . [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+## Reductions:
+-- On STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL
+--   reduce production typ -> INT
+
+State 7:
+## Known stack suffix:
+## BOOL
+## LR(1) items:
+typ -> BOOL . [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+## Reductions:
+-- On STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL
+--   reduce production typ -> BOOL
+
+State 8:
+## Known stack suffix:
+## LPAR types
+## LR(1) items:
+typ -> LPAR types . IMP typ RPAR [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+-- On IMP shift to state 9
+## Reductions:
+
+State 9:
+## Known stack suffix:
+## LPAR types IMP
+## LR(1) items:
+typ -> LPAR types IMP . typ RPAR [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On typ shift to state 10
+## Reductions:
+
+State 10:
+## Known stack suffix:
+## LPAR types IMP typ
+## LR(1) items:
+typ -> LPAR types IMP typ . RPAR [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+-- On RPAR shift to state 11
+## Reductions:
+
+State 11:
+## Known stack suffix:
+## LPAR types IMP typ RPAR
+## LR(1) items:
+typ -> LPAR types IMP typ RPAR . [ STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL ]
+## Transitions:
+## Reductions:
+-- On STAR RPAR RBRA NUM LPAR LBRA IMP IDENT COMMA CBOOL
+--   reduce production typ -> LPAR types IMP typ RPAR
+
+State 12:
+## Known stack suffix:
+## typ
+## LR(1) items:
+types -> typ . [ IMP ]
+types -> typ . STAR types [ IMP ]
+## Transitions:
+-- On STAR shift to state 13
+## Reductions:
+-- On IMP
+--   reduce production types -> typ
+
+State 13:
+## Known stack suffix:
+## typ STAR
+## LR(1) items:
+types -> typ STAR . types [ IMP ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On types shift to state 14
+-- On typ shift to state 12
+## Reductions:
+
+State 14:
+## Known stack suffix:
+## typ STAR types
+## LR(1) items:
+types -> typ STAR types . [ IMP ]
+## Transitions:
+## Reductions:
+-- On IMP
+--   reduce production types -> typ STAR types
+
+State 15:
+## Known stack suffix:
+## FUN REC IDENT typ
+## LR(1) items:
+def -> FUN REC IDENT typ . LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On LBRA shift to state 16
+## Reductions:
+
+State 16:
+## Known stack suffix:
+## FUN REC IDENT typ LBRA
+## LR(1) items:
+def -> FUN REC IDENT typ LBRA . args RBRA expr [ PV ]
+## Transitions:
+-- On IDENT shift to state 17
+-- On args shift to state 20
+-- On arg shift to state 31
+## Reductions:
+
+State 17:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+arg -> IDENT . COLON typ [ RBRA COMMA ]
+## Transitions:
+-- On COLON shift to state 18
+## Reductions:
+
+State 18:
+## Known stack suffix:
+## IDENT COLON
+## LR(1) items:
+arg -> IDENT COLON . typ [ RBRA COMMA ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On typ shift to state 19
+## Reductions:
+
+State 19:
+## Known stack suffix:
+## IDENT COLON typ
+## LR(1) items:
+arg -> IDENT COLON typ . [ RBRA COMMA ]
+## Transitions:
+## Reductions:
+-- On RBRA COMMA
+--   reduce production arg -> IDENT COLON typ
+
+State 20:
+## Known stack suffix:
+## FUN REC IDENT typ LBRA args
+## LR(1) items:
+def -> FUN REC IDENT typ LBRA args . RBRA expr [ PV ]
+## Transitions:
+-- On RBRA shift to state 21
+## Reductions:
+
+State 21:
+## Known stack suffix:
+## FUN REC IDENT typ LBRA args RBRA
+## LR(1) items:
+def -> FUN REC IDENT typ LBRA args RBRA . expr [ PV ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 51
+## Reductions:
+
+State 22:
+## Known stack suffix:
+## NUM
+## LR(1) items:
+expr -> NUM . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> NUM
+
+State 23:
+## Known stack suffix:
+## LPAR
+## LR(1) items:
+expr -> LPAR . IF expr expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+expr -> LPAR . AND expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+expr -> LPAR . OR expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+expr -> LPAR . expr exprs RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On OR shift to state 24
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IF shift to state 37
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On AND shift to state 42
+-- On expr shift to state 46
+## Reductions:
+
+State 24:
+## Known stack suffix:
+## LPAR OR
+## LR(1) items:
+expr -> LPAR OR . expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 34
+## Reductions:
+
+State 25:
+## Known stack suffix:
+## LBRA
+## LR(1) items:
+expr -> LBRA . args RBRA expr [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On IDENT shift to state 17
+-- On args shift to state 26
+-- On arg shift to state 31
+## Reductions:
+
+State 26:
+## Known stack suffix:
+## LBRA args
+## LR(1) items:
+expr -> LBRA args . RBRA expr [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On RBRA shift to state 27
+## Reductions:
+
+State 27:
+## Known stack suffix:
+## LBRA args RBRA
+## LR(1) items:
+expr -> LBRA args RBRA . expr [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 30
+## Reductions:
+
+State 28:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+expr -> IDENT . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> IDENT
+
+State 29:
+## Known stack suffix:
+## CBOOL
+## LR(1) items:
+expr -> CBOOL . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> CBOOL
+
+State 30:
+## Known stack suffix:
+## LBRA args RBRA expr
+## LR(1) items:
+expr -> LBRA args RBRA expr . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> LBRA args RBRA expr
+
+State 31:
+## Known stack suffix:
+## arg
+## LR(1) items:
+args -> arg . [ RBRA ]
+args -> arg . COMMA args [ RBRA ]
+## Transitions:
+-- On COMMA shift to state 32
+## Reductions:
+-- On RBRA
+--   reduce production args -> arg
+
+State 32:
+## Known stack suffix:
+## arg COMMA
+## LR(1) items:
+args -> arg COMMA . args [ RBRA ]
+## Transitions:
+-- On IDENT shift to state 17
+-- On args shift to state 33
+-- On arg shift to state 31
+## Reductions:
+
+State 33:
+## Known stack suffix:
+## arg COMMA args
+## LR(1) items:
+args -> arg COMMA args . [ RBRA ]
+## Transitions:
+## Reductions:
+-- On RBRA
+--   reduce production args -> arg COMMA args
+
+State 34:
+## Known stack suffix:
+## LPAR OR expr
+## LR(1) items:
+expr -> LPAR OR expr . expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 35
+## Reductions:
+
+State 35:
+## Known stack suffix:
+## LPAR OR expr expr
+## LR(1) items:
+expr -> LPAR OR expr expr . RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On RPAR shift to state 36
+## Reductions:
+
+State 36:
+## Known stack suffix:
+## LPAR OR expr expr RPAR
+## LR(1) items:
+expr -> LPAR OR expr expr RPAR . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> LPAR OR expr expr RPAR
+
+State 37:
+## Known stack suffix:
+## LPAR IF
+## LR(1) items:
+expr -> LPAR IF . expr expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 38
+## Reductions:
+
+State 38:
+## Known stack suffix:
+## LPAR IF expr
+## LR(1) items:
+expr -> LPAR IF expr . expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 39
+## Reductions:
+
+State 39:
+## Known stack suffix:
+## LPAR IF expr expr
+## LR(1) items:
+expr -> LPAR IF expr expr . expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 40
+## Reductions:
+
+State 40:
+## Known stack suffix:
+## LPAR IF expr expr expr
+## LR(1) items:
+expr -> LPAR IF expr expr expr . RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On RPAR shift to state 41
+## Reductions:
+
+State 41:
+## Known stack suffix:
+## LPAR IF expr expr expr RPAR
+## LR(1) items:
+expr -> LPAR IF expr expr expr RPAR . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> LPAR IF expr expr expr RPAR
+
+State 42:
+## Known stack suffix:
+## LPAR AND
+## LR(1) items:
+expr -> LPAR AND . expr expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 43
+## Reductions:
+
+State 43:
+## Known stack suffix:
+## LPAR AND expr
+## LR(1) items:
+expr -> LPAR AND expr . expr RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 44
+## Reductions:
+
+State 44:
+## Known stack suffix:
+## LPAR AND expr expr
+## LR(1) items:
+expr -> LPAR AND expr expr . RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On RPAR shift to state 45
+## Reductions:
+
+State 45:
+## Known stack suffix:
+## LPAR AND expr expr RPAR
+## LR(1) items:
+expr -> LPAR AND expr expr RPAR . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> LPAR AND expr expr RPAR
+
+State 46:
+## Known stack suffix:
+## LPAR expr
+## LR(1) items:
+expr -> LPAR expr . exprs RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On exprs shift to state 47
+-- On expr shift to state 49
+## Reductions:
+
+State 47:
+## Known stack suffix:
+## LPAR expr exprs
+## LR(1) items:
+expr -> LPAR expr exprs . RPAR [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+-- On RPAR shift to state 48
+## Reductions:
+
+State 48:
+## Known stack suffix:
+## LPAR expr exprs RPAR
+## LR(1) items:
+expr -> LPAR expr exprs RPAR . [ RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL ]
+## Transitions:
+## Reductions:
+-- On RPAR RBRA PV NUM LPAR LBRA IDENT CBOOL
+--   reduce production expr -> LPAR expr exprs RPAR
+
+State 49:
+## Known stack suffix:
+## expr
+## LR(1) items:
+exprs -> expr . [ RPAR ]
+exprs -> expr . exprs [ RPAR ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On exprs shift to state 50
+-- On expr shift to state 49
+## Reductions:
+-- On RPAR
+--   reduce production exprs -> expr
+
+State 50:
+## Known stack suffix:
+## expr exprs
+## LR(1) items:
+exprs -> expr exprs . [ RPAR ]
+## Transitions:
+## Reductions:
+-- On RPAR
+--   reduce production exprs -> expr exprs
+
+State 51:
+## Known stack suffix:
+## FUN REC IDENT typ LBRA args RBRA expr
+## LR(1) items:
+def -> FUN REC IDENT typ LBRA args RBRA expr . [ PV ]
+## Transitions:
+## Reductions:
+-- On PV
+--   reduce production def -> FUN REC IDENT typ LBRA args RBRA expr
+
+State 52:
+## Known stack suffix:
+## FUN IDENT
+## LR(1) items:
+def -> FUN IDENT . typ LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On typ shift to state 53
+## Reductions:
+
+State 53:
+## Known stack suffix:
+## FUN IDENT typ
+## LR(1) items:
+def -> FUN IDENT typ . LBRA args RBRA expr [ PV ]
+## Transitions:
+-- On LBRA shift to state 54
+## Reductions:
+
+State 54:
+## Known stack suffix:
+## FUN IDENT typ LBRA
+## LR(1) items:
+def -> FUN IDENT typ LBRA . args RBRA expr [ PV ]
+## Transitions:
+-- On IDENT shift to state 17
+-- On args shift to state 55
+-- On arg shift to state 31
+## Reductions:
+
+State 55:
+## Known stack suffix:
+## FUN IDENT typ LBRA args
+## LR(1) items:
+def -> FUN IDENT typ LBRA args . RBRA expr [ PV ]
+## Transitions:
+-- On RBRA shift to state 56
+## Reductions:
+
+State 56:
+## Known stack suffix:
+## FUN IDENT typ LBRA args RBRA
+## LR(1) items:
+def -> FUN IDENT typ LBRA args RBRA . expr [ PV ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 57
+## Reductions:
+
+State 57:
+## Known stack suffix:
+## FUN IDENT typ LBRA args RBRA expr
+## LR(1) items:
+def -> FUN IDENT typ LBRA args RBRA expr . [ PV ]
+## Transitions:
+## Reductions:
+-- On PV
+--   reduce production def -> FUN IDENT typ LBRA args RBRA expr
+
+State 58:
+## Known stack suffix:
+## ECHO
+## LR(1) items:
+stat -> ECHO . expr [ RBRA ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 59
+## Reductions:
+
+State 59:
+## Known stack suffix:
+## ECHO expr
+## LR(1) items:
+stat -> ECHO expr . [ RBRA ]
+## Transitions:
+## Reductions:
+-- On RBRA
+--   reduce production stat -> ECHO expr
+
+State 60:
+## Known stack suffix:
+## CONST
+## LR(1) items:
+def -> CONST . IDENT typ expr [ PV ]
+## Transitions:
+-- On IDENT shift to state 61
+## Reductions:
+
+State 61:
+## Known stack suffix:
+## CONST IDENT
+## LR(1) items:
+def -> CONST IDENT . typ expr [ PV ]
+## Transitions:
+-- On LPAR shift to state 5
+-- On INT shift to state 6
+-- On BOOL shift to state 7
+-- On typ shift to state 62
+## Reductions:
+
+State 62:
+## Known stack suffix:
+## CONST IDENT typ
+## LR(1) items:
+def -> CONST IDENT typ . expr [ PV ]
+## Transitions:
+-- On NUM shift to state 22
+-- On LPAR shift to state 23
+-- On LBRA shift to state 25
+-- On IDENT shift to state 28
+-- On CBOOL shift to state 29
+-- On expr shift to state 63
+## Reductions:
+
+State 63:
+## Known stack suffix:
+## CONST IDENT typ expr
+## LR(1) items:
+def -> CONST IDENT typ expr . [ PV ]
+## Transitions:
+## Reductions:
+-- On PV
+--   reduce production def -> CONST IDENT typ expr
+
+State 64:
+## Known stack suffix:
+## stat
+## LR(1) items:
+cmds -> stat . [ RBRA ]
+## Transitions:
+## Reductions:
+-- On RBRA
+--   reduce production cmds -> stat
+
+State 65:
+## Known stack suffix:
+## def
+## LR(1) items:
+cmds -> def . PV cmds [ RBRA ]
+## Transitions:
+-- On PV shift to state 66
+## Reductions:
+
+State 66:
+## Known stack suffix:
+## def PV
+## LR(1) items:
+cmds -> def PV . cmds [ RBRA ]
+## Transitions:
+-- On FUN shift to state 2
+-- On ECHO shift to state 58
+-- On CONST shift to state 60
+-- On stat shift to state 64
+-- On def shift to state 65
+-- On cmds shift to state 67
+## Reductions:
+
+State 67:
+## Known stack suffix:
+## def PV cmds
+## LR(1) items:
+cmds -> def PV cmds . [ RBRA ]
+## Transitions:
+## Reductions:
+-- On RBRA
+--   reduce production cmds -> def PV cmds
+
+State 68:
+## Known stack suffix:
+## LBRA cmds
+## LR(1) items:
+prog -> LBRA cmds . RBRA [ # ]
+## Transitions:
+-- On RBRA shift to state 69
+## Reductions:
+
+State 69:
+## Known stack suffix:
+## LBRA cmds RBRA
+## LR(1) items:
+prog -> LBRA cmds RBRA . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   reduce production prog -> LBRA cmds RBRA
+
+State 70:
+## Known stack suffix:
+## prog
+## LR(1) items:
+prog' -> prog . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   accept prog
+

@@ -1,0 +1,5 @@
+[
+  FUN f int [x1:bool, x2:int, x3:int] (if true 3 5);
+  CONST y bool false;
+  ECHO 32
+]

@@ -1,0 +1,5 @@
+[
+  CONST x int 1;
+  CONST y bool false;
+  ECHO x
+]

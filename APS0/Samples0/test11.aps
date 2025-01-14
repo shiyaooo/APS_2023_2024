@@ -1,0 +1,4 @@
+[ CONST x int 2;
+  FUN f int [y:int] (mul x y);
+  CONST x int (f x);
+  ECHO (f x)]

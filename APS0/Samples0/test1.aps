@@ -1,0 +1,4 @@
+[   CONST x int 2;
+    CONST y bool false;
+    ECHO (if (eq x 2) 42 x) ]
+

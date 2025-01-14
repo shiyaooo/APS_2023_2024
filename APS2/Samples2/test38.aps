@@ -1,0 +1,13 @@
+[
+  CONST xs (vec (vec bool)) (alloc 4);
+  SET (nth xs 0) true;
+  SET (nth xs 1) true;
+  SET (nth xs 2) false;
+  SET (nth xs 3) false;
+  IF (and (nth xs 0) (nth xs 1)) [
+    ECHO 42
+  ]
+  [
+    ECHO 41
+  ]  
+]
